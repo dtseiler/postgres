@@ -2094,6 +2094,10 @@ retry1:
 											pstrdup(nameptr));
 				port->guc_options = lappend(port->guc_options,
 											pstrdup(valptr));
+
+				/* Copy application_name to port as well */
+				if (strcmp(nameptr, "application_name") == 0)
+					port->application_name = pstrdup(valptr);
 			}
 			offset = valoffset + strlen(valptr) + 1;
 		}
