@@ -56,3 +56,20 @@ strtoint(const char *pg_restrict str, char **pg_restrict endptr, int base)
 		errno = ERANGE;
 	return (int) val;
 }
+
+
+/*
+ * clean_ascii -- Replace any non-ASCII chars with a '?' char
+ */
+void
+clean_ascii(char *newval)
+{
+	/* Only allow clean ASCII chars in the string */
+	char		*p;
+
+	for (p = newval; *p; p++)
+	{
+		if (*p < 32 || *p > 126)
+			*p = '?';
+	}
+}

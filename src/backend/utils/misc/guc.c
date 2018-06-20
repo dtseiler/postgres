@@ -41,6 +41,7 @@
 #include "commands/vacuum.h"
 #include "commands/variable.h"
 #include "commands/trigger.h"
+#include "common/string.h"
 #include "funcapi.h"
 #include "jit/jit.h"
 #include "libpq/auth.h"
@@ -10724,13 +10725,7 @@ static bool
 check_application_name(char **newval, void **extra, GucSource source)
 {
 	/* Only allow clean ASCII chars in the application name */
-	char	   *p;
-
-	for (p = *newval; *p; p++)
-	{
-		if (*p < 32 || *p > 126)
-			*p = '?';
-	}
+	clean_ascii(*newval);
 
 	return true;
 }
@@ -10746,13 +10741,7 @@ static bool
 check_cluster_name(char **newval, void **extra, GucSource source)
 {
 	/* Only allow clean ASCII chars in the cluster name */
-	char	   *p;
-
-	for (p = *newval; *p; p++)
-	{
-		if (*p < 32 || *p > 126)
-			*p = '?';
-	}
+	clean_ascii(*newval);
 
 	return true;
 }

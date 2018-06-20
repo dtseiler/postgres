@@ -2094,6 +2094,18 @@ retry1:
 											pstrdup(nameptr));
 				port->guc_options = lappend(port->guc_options,
 											pstrdup(valptr));
+
+				/*
+				 * Copy application_name to port when we come across it.
+				 * This is used so we can log the application_name upon
+				 * connection authorization.
+				 */
+				if (strcmp(nameptr, "application_name") == 0)
+				{
+					char *tmp_app_name = pstrdup(valptr);
+					clean_ascii(tmp_app_name);
+					port->application_name = pstrdup(tmp_app_name);
+				}
 			}
 			offset = valoffset + strlen(valptr) + 1;
 		}
