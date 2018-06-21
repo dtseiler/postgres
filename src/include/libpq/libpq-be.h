@@ -135,7 +135,6 @@ typedef struct Port
 	 */
 	char	   *database_name;
 	char	   *user_name;
-	char	   *application_name;
 	char	   *cmdline_options;
 	List	   *guc_options;
 
