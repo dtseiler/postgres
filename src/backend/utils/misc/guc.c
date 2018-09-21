@@ -10725,7 +10725,7 @@ static bool
 check_application_name(char **newval, void **extra, GucSource source)
 {
 	/* Only allow clean ASCII chars in the application name */
-	clean_ascii(newval);
+	clean_ascii(*newval);
 
 	return true;
 }
@@ -10741,7 +10741,7 @@ static bool
 check_cluster_name(char **newval, void **extra, GucSource source)
 {
 	/* Only allow clean ASCII chars in the cluster name */
-	clean_ascii(newval);
+	clean_ascii(*newval);
 
 	return true;
 }

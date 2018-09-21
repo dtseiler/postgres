@@ -13,6 +13,6 @@
 extern bool pg_str_endswith(const char *str, const char *end);
 extern int strtoint(const char *pg_restrict str, char **pg_restrict endptr,
 		 int base);
-extern void clean_ascii(char **newval);
+extern void clean_ascii(char *newval);
 
 #endif							/* COMMON_STRING_H */

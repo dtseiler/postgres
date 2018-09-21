@@ -2103,7 +2103,7 @@ retry1:
 				if (strcmp(nameptr, "application_name") == 0)
 				{
 					char *tmp_app_name = pstrdup(valptr);
-					clean_ascii(&tmp_app_name);
+					clean_ascii(tmp_app_name);
 					port->application_name = pstrdup(tmp_app_name);
 				}
 			}
