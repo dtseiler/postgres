@@ -2101,7 +2101,11 @@ retry1:
 				 * connection authorization.
 				 */
 				if (strcmp(nameptr, "application_name") == 0)
-					port->application_name = pstrdup(valptr);
+				{
+					char *tmp_app_name = pstrdup(valptr);
+					clean_ascii(&tmp_app_name);
+					port->application_name = pstrdup(tmp_app_name);
+				}
 			}
 			offset = valoffset + strlen(valptr) + 1;
 		}
